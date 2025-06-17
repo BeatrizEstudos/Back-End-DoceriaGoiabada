@@ -1,0 +1,16 @@
+O que fiz no projeto até agora:
+
+Primeiro instalei o gereciamento de pacotes PNPM 
+Depois instalei o express
+depois o nodemon pnpm install --save-dev nodemon
+
+
+O projeto está dividido com a seguinte estrutura: 
+config -> db
+controllers 
+middleware
+models -> produto e pedido
+routes
+utils
+server.js
+app.js
