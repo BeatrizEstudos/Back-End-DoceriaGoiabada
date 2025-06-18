@@ -10,7 +10,7 @@ config -> db
 controllers 
 middleware
 models -> produto e pedido OK
-routes -> OK
+routes -> produto e pedido OK
 utils
 server.js
 app.js
