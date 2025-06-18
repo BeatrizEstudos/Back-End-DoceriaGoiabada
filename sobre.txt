@@ -9,8 +9,8 @@ O projeto está dividido com a seguinte estrutura:
 config -> db
 controllers 
 middleware
-models -> produto e pedido
-routes
+models -> produto e pedido OK
+routes -> OK
 utils
 server.js
 app.js
