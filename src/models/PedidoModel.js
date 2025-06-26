@@ -1,3 +1,6 @@
+const mongoose = require('mongoose');
+
+
 const PedidoSchema = new mongoose.Schema({
   cliente: {
     nome: String,
