@@ -17,7 +17,7 @@ const PedidoSchema = new mongoose.Schema({
   dataHoraRetirada: Date,
   status: {
     type: String,
-    enum: ['pendente', 'confirmado', 'concluído'],
+    enum: ['pendente', 'confirmado', 'pronto', 'finalizado', 'cancelado'],
     default: 'pendente'
   }
 }, {

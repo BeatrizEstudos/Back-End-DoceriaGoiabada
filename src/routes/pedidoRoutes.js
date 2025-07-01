@@ -4,12 +4,12 @@ const PedidoController = require("../controllers/pedidoController")
 const validacaoGeralPedido = require("../middleware/validacaoLojaEData")
 
 router.get("/pedidos-geral/", validacaoGeralPedido, PedidoController.getPedidoGeral)
-router.get("/pedidos-geral/:data", validacaoGeralPedido, PedidoController.getPedidoGeral)
-// router.get("/pedido-especifico/:id", PedidoController.)
-// router.post("/aceita-pedido/:id", PedidoController.)
-// router.post("/pedido-pronto/:id", PedidoController. )
-// router.post("/finalizar-pedido/:id", PedidoController.)
-// router.delete("/cancelar-pedido/:id", PedidoController.)
+router.get("/pedidos-geral/:data", validacaoGeralPedido, PedidoController.getPedidoGeralData)
+router.get("/pedido-especifico/:id", validacaoGeralPedido, PedidoController.getPedidoEspecifico)
+router.post("/aceita-pedido/:id", PedidoController.postAceitarPedido)
+router.put("/pedido-pronto/:id", PedidoController.putPedidoPronto)
+router.put("/finalizar-pedido/:id", PedidoController.putPedidoFinalizado)
+router.delete("/cancelar-pedido/:id", PedidoController.deleteCancelarPedido)
 
 module.exports = router
 
