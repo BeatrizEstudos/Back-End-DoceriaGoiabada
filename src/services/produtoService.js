@@ -42,7 +42,7 @@ const putAtualizarProdutoService = async (lojaId, produtoId, produtoData) => {
     if (!lojaId) {
       throw new Error("O ID da loja é obrigatório.");
     }
-    if(!produto) {
+    if(!produtoData) {
        throw new Error("É necessário adicionar as informações do produto");
     }
     const atualizarProduto = await Produto.findOneAndUpdate(
@@ -60,14 +60,12 @@ const putAtualizarProdutoService = async (lojaId, produtoId, produtoData) => {
   }
 }
 
-const deleteProdutoService = async (lojaId, produtoId, produtoData) => {
+const deleteProdutoService = async (lojaId, produtoId) => {
   try {
     if (!lojaId) {
       throw new Error("O ID da loja é obrigatório.");
     }
-    if(!produto) {
-       throw new Error("É necessário adicionar as informações do produto");
-    }
+    
     const deletarProduto = await Produto.findOneAndDelete({ _id: produtoId, loja: lojaId }).lean();
 
     return deletarProduto;
