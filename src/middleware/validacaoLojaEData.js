@@ -1,4 +1,4 @@
-const logger = require ("../utils/logger")
+import logger from "../utils/logger.js";
 
 const validacaoGeralPedido = (req, res, next) => {
   const dataRegex = /^\d{2}-\d{2}-\d{4}$/;
@@ -22,4 +22,4 @@ const validacaoGeralPedido = (req, res, next) => {
   }
   next();
 }
-  module.exports = validacaoGeralPedido
+ export default validacaoGeralPedido

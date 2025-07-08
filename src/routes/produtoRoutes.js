@@ -1,12 +1,12 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const validacaoGeralPedido = require("../middleware/validacaoLojaEData")
-const ProdutoController = require ("../controllers/produtoController")
+import validacaoGeralPedido from '../middleware/validacaoLojaEData.js'
+import ProdutoController from '../controllers/produtoController.js'
 
 
 router.get("/produtos-geral", validacaoGeralPedido, ProdutoController.getProdutoGeral)
 router.post("/adicionar-produto", validacaoGeralPedido, ProdutoController.postAdicionarProduto)
-router.put("/atualizar-produto/:id", PedidoController.putAtualizarProduto)
-router.delete("deletar-produto/:id", PedidoController.deleteProduto)
+router.put("/atualizar-produto/:id", ProdutoController.putAtualizarProduto)
+router.delete("/deletar-produto/:id", ProdutoController.deleteProduto)
 
-module.exports = router
+export default router

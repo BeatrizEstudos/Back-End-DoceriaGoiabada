@@ -1,11 +1,11 @@
-const { getProdutoGeralService} = require ("../services/produtoService")
-const logger = require("../utils/logger")
+import PedidoService from "../services/produtoService.js";
+import logger from '../utils/logger.js'
 
 const getProdutoGeral = async (req, res) => {
   const lojaId = req.headers["loja-id"]
 
   try {
-    const produtosGeral = await getProdutoGeralService(lojaId)
+    const produtosGeral = await PedidoService.getProdutoGeralService(lojaId)
     logger.info({
       message: "Mostrando todos os produtos",
       produtosGeral
@@ -21,11 +21,11 @@ const getProdutoGeral = async (req, res) => {
 }
 
 const postAdicionarProduto = async (req, res) => {
-  const lojaId = req.headers["loja-id"]
+  const lojaId = "123abc456A"
   const produtoData = req.body;
   try {
-    const adicionarProduto = await postAdicionarProdutoService(lojaId, produtoData)
-    return res.status(201).json({message: "Produtos adicionados com sucesso!"})
+    const adicionarProduto = await PedidoService.postAdicionarProdutoService(lojaId, produtoData)
+    return res.status(201).json({message: "Produtos adicionados com sucesso!", adicionarProduto})
   } catch (error){
      logger.error({
       message: "Error ao adicionar os produtos na loja", 
@@ -40,8 +40,8 @@ const putAtualizarProduto = async (req, res) => {
   const produtoId = req.params.id; 
   const produtoData = req.body;
   try {
-    const atualizarProduto = await putAtualizarProdutoService(lojaId, produtoId, produtoData)
-    return res.status(200).json({message: "Produtos atualizados com sucesso!"})
+    const atualizarProduto = await PedidoService.putAtualizarProdutoService(lojaId, produtoId, produtoData)
+    return res.status(200).json({message: "Produtos atualizados com sucesso!", atualizarProduto})
   } catch (error){
      logger.error({
       message: "Error ao atualizar os produtos", 
@@ -56,8 +56,8 @@ const deleteProduto = async (req, res) => {
   const produtoId = req.params.id; 
   const produtoData = req.body;
   try {
-    const deletarProduto = await deleteProdutoService(lojaId, produtoId, produtoData)
-    return res.status(200).json({message: "Produtos deletados com sucesso!"})
+    const deletarProduto = await PedidoService.deleteProdutoService(lojaId, produtoId, produtoData)
+    return res.status(200).json({message: "Produtos deletados com sucesso!", deletarProduto})
   } catch (error){
      logger.error({
       message: "Error ao deletar os produtos", 
@@ -66,4 +66,4 @@ const deleteProduto = async (req, res) => {
     return res.status(500).json({message:"Não foi possível deletar os produtos"})
   }
 }
-module.exports = {getProdutoGeral, postAdicionarProduto, putAtualizarProduto, deleteProduto}
+export default {getProdutoGeral, postAdicionarProduto, putAtualizarProduto, deleteProduto}

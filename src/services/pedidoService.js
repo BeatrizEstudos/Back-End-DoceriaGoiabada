@@ -1,5 +1,5 @@
-const Pedido = require("../models/PedidoModel");
-const logger = require("../utils/logger")
+import Pedido from "../models/PedidoModel.js";
+import logger from "../utils/logger.js"
 
 const getGeralPedidosService = async (lojaId) => {
   try {
@@ -71,7 +71,7 @@ const getPedidoEspecificoService = async (lojaId, pedidoId, status) => {
   }
 }
 
-const putAceitarPedidoService = async (lojaId, pedidoId) => {
+const postAceitarPedidoService = async (lojaId, pedidoId) => {
   try {
     if (!lojaId || !pedidoId) {
       throw new Error("O ID da loja e do pedido é obrigatório.");
@@ -152,6 +152,6 @@ const deleteCancelarPedidoService = async (lojaId, pedidoId) => {
 }
 
 
-module.exports = {
-  getGeralPedidosService, getGeralPedidosDataService, getPedidoEspecificoService, putAceitarPedidoService, putPedidoProntoService, putPedidoFinalizadoService, deleteCancelarPedidoService
+export default {
+  getGeralPedidosService, getGeralPedidosDataService, getPedidoEspecificoService, postAceitarPedidoService, putPedidoProntoService, putPedidoFinalizadoService, deleteCancelarPedidoService
 }

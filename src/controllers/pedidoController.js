@@ -1,10 +1,10 @@
-const { getGeralPedidosService, getGeralPedidosDataService, getPedidoEspecificoService, postAceitarPedidoService } = require("../services/pedidoService")
-const logger = require("../utils/logger")
+import PedidoService from "../services/pedidoService.js"
+import logger from '../utils/logger.js'
 
 const getPedidoGeral = async (req, res) => {
   const lojaId = req.headers["loja-id"]
   try {
-    const mostrarPedidos = await getGeralPedidosService(lojaId)
+    const mostrarPedidos = await PedidoService.getGeralPedidosService(lojaId)
     return res.status(200).json(mostrarPedidos);
   } catch (error) {
     logger.error({
@@ -21,7 +21,7 @@ const getPedidoGeralData = async (req, res) => {
   const lojaId = req.headers["loja-id"]
   const dataFiltro = req.params.id;
   try {
-    const mostrarPedidos = await getGeralPedidosDataService(lojaId, dataFiltro)
+    const mostrarPedidos = await PedidoService.getGeralPedidosDataService(lojaId, dataFiltro)
     return res.status(200).json(mostrarPedidos);
   } catch (error) {
     logger.error({
@@ -38,7 +38,7 @@ const getPedidoEspecifico = async (req, res) => {
   const lojaId = req.headers["loja-id"]
   const pedidoId = req.params.id;
   try {
-    const pedidoEspecifico = await getPedidoEspecificoService(lojaId, pedidoId)
+    const pedidoEspecifico = await PedidoService.getPedidoEspecificoService(lojaId, pedidoId)
     return res.status(200).json(pedidoEspecifico);
   } catch (error) {
     logger.error({
@@ -68,7 +68,7 @@ const postAceitarPedido = async (req, res) => {
       return res.status(400).json({ message: "O id da loja e o pedido é obrigatório!" })
     }
 
-    const aceitarPedido = await postAceitarPedidoService(lojaId, pedidoId);
+    const aceitarPedido = await PedidoService.postAceitarPedidoService(lojaId, pedidoId);
 
     return res.status(200).json({
       message: `Pedido ${pedidoId} aceito com sucesso!`,
@@ -98,7 +98,7 @@ const putPedidoPronto = async (req, res) => {
       return res.status(400).json({ message: "O id da loja e o pedido é obrigatório!" })
     }
 
-    const prontoPedido = await postPedidoProntoService(lojaId, pedidoId);
+    const prontoPedido = await PedidoService.putPedidoProntoService(lojaId, pedidoId);
 
     return res.status(200).json({
       message: `Pedido ${pedidoId} pronto com sucesso!`,
@@ -128,7 +128,7 @@ const putPedidoFinalizado = async (req, res) => {
       return res.status(400).json({ message: "O id da loja e o pedido é obrigatório!" })
     }
 
-    const finalizarPedido = await putPedidoFinalizadoService(lojaId, pedidoId);
+    const finalizarPedido = await PedidoService.putPedidoFinalizadoService(lojaId, pedidoId);
 
     return res.status(200).json({
       message: `Pedido ${pedidoId} finalizado com sucesso!`,
@@ -158,7 +158,7 @@ const deleteCancelarPedido = async (req, res) => {
       return res.status(400).json({ message: "O id da loja e o pedido é obrigatório!" })
     }
 
-    const cancelarPedido = await deleteCancelarPedidoService(lojaId, pedidoId);
+    const cancelarPedido = await PedidoService.deleteCancelarPedidoService(lojaId, pedidoId);
 
     return res.status(200).json({
       message: `Pedido ${pedidoId} cancelado com sucesso!`,
@@ -176,7 +176,7 @@ const deleteCancelarPedido = async (req, res) => {
   }
 }
 
-module.exports = { getPedidoGeral, getPedidoGeralData, getPedidoEspecifico, postAceitarPedido, putPedidoPronto, putPedidoFinalizado, deleteCancelarPedido }
+export default { getPedidoGeral, getPedidoGeralData, getPedidoEspecifico, postAceitarPedido, putPedidoPronto, putPedidoFinalizado, deleteCancelarPedido }
 
 
 

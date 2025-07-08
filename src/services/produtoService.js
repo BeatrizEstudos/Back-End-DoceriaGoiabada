@@ -1,5 +1,5 @@
-const logger = require ("../utils/logger")
-const Produto = require ("../models/ProdutoModel")
+import logger from "../utils/logger.js";
+import Produto from "../models/ProdutoModel.js"
 
 const getProdutoGeralService = async (lojaId) => {
   try {
@@ -80,4 +80,4 @@ const deleteProdutoService = async (lojaId, produtoId, produtoData) => {
   }
 }
 
-module.exports = { getProdutoGeralService, postAdicionarProdutoService, putAtualizarProdutoService, deleteProdutoService}
+export default  { getProdutoGeralService, postAdicionarProdutoService, putAtualizarProdutoService, deleteProdutoService}

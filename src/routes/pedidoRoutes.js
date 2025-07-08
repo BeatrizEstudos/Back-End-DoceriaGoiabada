@@ -1,7 +1,7 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const PedidoController = require("../controllers/pedidoController")
-const validacaoGeralPedido = require("../middleware/validacaoLojaEData")
+import PedidoController from '../controllers/pedidoController.js'
+import validacaoGeralPedido from '../middleware/validacaoLojaEData.js'
 
 router.get("/pedidos-geral/", validacaoGeralPedido, PedidoController.getPedidoGeral)
 router.get("/pedidos-geral/:data", validacaoGeralPedido, PedidoController.getPedidoGeralData)
@@ -11,5 +11,5 @@ router.put("/pedido-pronto/:id", PedidoController.putPedidoPronto)
 router.put("/finalizar-pedido/:id", PedidoController.putPedidoFinalizado)
 router.delete("/cancelar-pedido/:id", PedidoController.deleteCancelarPedido)
 
-module.exports = router
+export default router
 
