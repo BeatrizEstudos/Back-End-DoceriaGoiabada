@@ -1,14 +1,14 @@
 import mongoose from 'mongoose';
 
 const ProdutoSchema = new mongoose.Schema({
-  
-  loja: { 
+
+  loja: {
     type: String,
     required: true
   },
   nome: {
     type: String,
-    required: true 
+    required: true
   },
   preco: {
     type: Number,
@@ -21,8 +21,8 @@ const ProdutoSchema = new mongoose.Schema({
   imagem: {
     type: String
   },
-  
-}, { timestamps: true }); 
+
+}, { timestamps: true });
 
 const Produto = mongoose.model('Produto', ProdutoSchema);
 export default Produto;

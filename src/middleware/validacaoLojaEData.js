@@ -22,4 +22,4 @@ const validacaoGeralPedido = (req, res, next) => {
   }
   next();
 }
- export default validacaoGeralPedido
+export default validacaoGeralPedido

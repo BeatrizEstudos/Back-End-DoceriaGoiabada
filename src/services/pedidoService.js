@@ -1,4 +1,5 @@
 import Pedido from "../models/PedidoModel.js";
+import Produto from "../models/ProdutoModel.js"
 import logger from "../utils/logger.js"
 
 const getGeralPedidosService = async (lojaId) => {
@@ -26,7 +27,7 @@ const getGeralPedidosDataService = async (lojaId, dataFiltro) => {
     let query = { loja: lojaId };
 
     if (dataFiltro) {
-      // Supondo dataFiltro no formato "DD-MM-YYYY"
+
       const [dia, mes, ano] = dataFiltro.split("-");
       const dataInicial = new Date(`${ano}-${mes}-${dia}T00:00:00.000Z`);
       const dataFinal = new Date(`${ano}-${mes}-${dia}T23:59:59.999Z`);
@@ -66,6 +67,51 @@ const getPedidoEspecificoService = async (lojaId, pedidoId, status) => {
     logger.error({
       message: "Error ao buscar pedido específico",
       pedidoId
+    });
+    throw error;
+  }
+}
+
+const postCriarPedidoService = async (lojaId, cliente, itens, status, dataHoraRetirada) => {
+  try {
+    const itensDoPedido = [];
+    let totalDoPedidoGeral = 0;
+
+    for (const item of itens) {
+      const produto = await Produto.findOne({ _id: item.produtoId, loja: lojaId });
+
+      if (!produto) {
+        throw new Error(`Produto ${item.produtoId} não encontrado.`);
+
+      }
+      const totalGeral = (produto.preco * item.quantidade);
+      itensDoPedido.push({
+        produto: produto._id,
+        quantidade: item.quantidade,
+        precoDoProdutoNoMomentoDaCompra: produto.preco,
+        total: totalGeral
+      });
+      totalDoPedidoGeral += totalGeral;
+
+    }
+
+    const novoPedido = new Pedido({
+      loja: lojaId,
+      cliente,
+      itens: itensDoPedido,
+      totalDoPedido: totalDoPedidoGeral,
+      dataHoraRetirada,
+      status
+    });
+
+    await novoPedido.save();
+
+    return novoPedido;
+  } catch (error) {
+    logger.error({
+      message: "Error ao criar pedido",
+      error: error.message
+
     });
     throw error;
   }
@@ -153,5 +199,5 @@ const deleteCancelarPedidoService = async (lojaId, pedidoId) => {
 
 
 export default {
-  getGeralPedidosService, getGeralPedidosDataService, getPedidoEspecificoService, postAceitarPedidoService, putPedidoProntoService, putPedidoFinalizadoService, deleteCancelarPedidoService
+  getGeralPedidosService, getGeralPedidosDataService, getPedidoEspecificoService, postCriarPedidoService, postAceitarPedidoService, putPedidoProntoService, putPedidoFinalizadoService, deleteCancelarPedidoService
 }
