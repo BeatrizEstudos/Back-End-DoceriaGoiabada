@@ -55,6 +55,27 @@ const getPedidoEspecifico = async (req, res) => {
     return res.status(500).json({ message: "Ocorreu um erro ao buscar o pedido específico" })
   }
 }
+const postCriarPedido = async (req, res) => {
+  const lojaId = req.headers["loja-id"];
+  const { cliente, itens, status, dataHoraRetirada } = req.body
+
+  try {
+    const criarPedido = await PedidoService.postCriarPedidoService(lojaId, cliente, itens, status, dataHoraRetirada)
+    return res.status(200).json({
+      message: "Pedido criado com sucesso!",
+      pedido: criarPedido
+    })
+
+  } catch (error) {
+    logger.error({
+      message: "Erro ao criar pedido",
+      error: error.message,
+      lojaId
+    });
+    return res.status(500).json({ message: "Ocorreu um erro ao criar pedido." });
+  }
+
+}
 
 const postAceitarPedido = async (req, res) => {
   const lojaId = req.headers["loja-id"]
@@ -176,7 +197,7 @@ const deleteCancelarPedido = async (req, res) => {
   }
 }
 
-export default { getPedidoGeral, getPedidoGeralData, getPedidoEspecifico, postAceitarPedido, putPedidoPronto, putPedidoFinalizado, deleteCancelarPedido }
+export default { getPedidoGeral, getPedidoGeralData, getPedidoEspecifico, postCriarPedido, postAceitarPedido, putPedidoPronto, putPedidoFinalizado, deleteCancelarPedido }
 
 
 
