@@ -25,7 +25,7 @@ const getPedidoGeralData = async (req, res) => {
     return res.status(200).json(mostrarPedidos);
   } catch (error) {
     logger.error({
-      message: "Erro ao buscar pedidos gerais",
+      message: "Erro ao buscar pedidos gerais por data específica",
       error: error.message,
       lojaId
     });

@@ -150,7 +150,7 @@ const putPedidoProntoService = async (lojaId, pedidoId) => {
 
   } catch (error) {
     logger.error({
-      message: "Error ao aceita pedido",
+      message: "Erro ao passar o pedido para pronto",
       pedidoId
     });
     throw error;

@@ -8,10 +8,10 @@ router.get("/pedidos-geral/", validacaoGeralPedido, PedidoController.getPedidoGe
 router.get("/pedidos-geral/:data", validacaoGeralPedido, PedidoController.getPedidoGeralData)
 router.get("/pedido-especifico/:id", validacaoGeralPedido, PedidoController.getPedidoEspecifico)
 router.post("/criar-pedido/", validacaoGeralPedido, validacaoPedidoCompleto, PedidoController.postCriarPedido)
-router.post("/aceita-pedido/:id", PedidoController.postAceitarPedido)
-router.put("/pedido-pronto/:id", PedidoController.putPedidoPronto)
-router.put("/finalizar-pedido/:id", PedidoController.putPedidoFinalizado)
-router.delete("/cancelar-pedido/:id", PedidoController.deleteCancelarPedido)
+router.post("/aceita-pedido/:id", validacaoGeralPedido, PedidoController.postAceitarPedido)
+router.put("/pedido-pronto/:id", validacaoGeralPedido, PedidoController.putPedidoPronto)
+router.put("/finalizar-pedido/:id", validacaoGeralPedido, PedidoController.putPedidoFinalizado)
+router.delete("/cancelar-pedido/:id", validacaoGeralPedido, PedidoController.deleteCancelarPedido)
 
 export default router
 
