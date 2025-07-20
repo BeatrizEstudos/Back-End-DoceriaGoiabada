@@ -19,6 +19,18 @@ As principais tecnologias e ferramentas utilizadas no desenvolvimento deste proj
 
 O diagrama abaixo ilustra as rotas da API e suas respectivas operações (HTTP Methods), detalhando o fluxo de interações do sistema:
 
+**Observação**: Clique na imagem para abrir uma nova guia e dar um zoom.
+
+**Pedidos**
+<p align="center">
+  <img src="https://i.imgur.com/Yfe8Y61.png" alt="Fluxograma de Pedidos"  width="1000" />
+  </p>
+
+**Produto**
+<p align="center">
+  <img src="https://i.imgur.com/aO1w0c3.png" alt="Fluxograma de Produtos"  width="1000" />
+  </p>
+
 ## ⚙️ Como Executar o Projeto
 
 Siga os passos abaixo para configurar e executar o projeto localmente:
@@ -39,7 +51,6 @@ Siga os passos abaixo para configurar e executar o projeto localmente:
     ```
     PORT=3000
     MONGO_URI=mongodb://localhost:27017/doceriagoiabada
-    # Outras variáveis de ambiente que seu projeto possa usar
     ```
     *(Ajuste `PORT` e `MONGO_URI` conforme a configuração do seu ambiente e adicione quaisquer outras variáveis necessárias.)*
 
@@ -47,7 +58,7 @@ Siga os passos abaixo para configurar e executar o projeto localmente:
     ```bash
     pnpm start
     ```
-    O servidor estará rodando em `http://localhost:3000` (ou na porta configurada no seu `.env`).
+    O servidor estará rodando em `http://localhost:3000`.
 
 ## 📁 Estrutura de Pastas
 
