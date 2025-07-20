@@ -21,7 +21,7 @@ const getProdutoGeral = async (req, res) => {
 }
 
 const postAdicionarProduto = async (req, res) => {
-  const lojaId = "123abc456A"
+  const lojaId = ["loja-id"]
   const produtoData = req.body;
   try {
     const adicionarProduto = await PedidoService.postAdicionarProdutoService(lojaId, produtoData)
